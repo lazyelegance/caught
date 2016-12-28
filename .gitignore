@@ -52,6 +52,7 @@ jspm_packages
 # keys
 keys.txt
 caught-1d629-firebase-adminsdk-rn0ek-c78a1b7d40.json
+*.env
 
 
 # End of https://www.gitignore.io/api/node
