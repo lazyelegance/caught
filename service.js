@@ -1,15 +1,19 @@
 var http = require('http');
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('./keys.txt');
+const save = require('./save');
+
+
 
 function getMatches() {
   (function(callback) {
     'use strict';
 
-    console.log(properties.get('bowled.hostname'));
-    console.log(properties.get('bowled.port'));
-    console.log(properties.get('bowled.matchesPath'));
-    console.log(properties.get('bowled.mashapeKey'));
+    // TEST
+    // console.log(properties.get('bowled.hostname'));
+    // console.log(properties.get('bowled.port'));
+    // console.log(properties.get('bowled.matchesPath'));
+    // console.log(properties.get('bowled.mashapeKey'));
 
     const httpTransport = require('https');
     const responseEncoding = 'utf8';
@@ -58,10 +62,8 @@ function getMatches() {
     // console.log('BODY:', JSON.parse(body));
     var results = JSON.parse(body);
     console.log(results.matchList.matches.length);
-    for (var i = 0; i < results.matchList.matches.length; i++) {
-      console.log(results.matchList.matches[i].id);
-      console.log(results.matchList.matches[i].homeTeam.name);
-    }
+    save.tester();
+    save.saveToFB(results.matchList.matches);
   }
     // console.log('ERROR:', error);
     console.log('STATUS:', statusCode);
