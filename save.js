@@ -10,8 +10,6 @@ admin.initializeApp({
     client_id: process.env.FIR_CLIENT_ID,
     client_x509_cert_url: process.env.FIR_CERT_URL,
     auth_provider_x509_cert_url: process.env.FIR_AUTH_CERT_URL
-
-
   }),
   databaseURL: process.env.FIREBASEDB
 });
