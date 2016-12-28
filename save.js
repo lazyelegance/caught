@@ -4,8 +4,8 @@ var properties = PropertiesReader('./keys.txt');
 
 var admin = require("firebase-admin");
 admin.initializeApp({
-  credential: admin.credential.cert("./caught-1d629-firebase-adminsdk-rn0ek-c78a1b7d40.json"),
-  databaseURL: properties.get('firebase.databaseURL')
+  credential: admin.credential.cert(process.env.FIREBASE_CRED),
+  databaseURL: process.env.FIREBASEDB
 });
 
 

@@ -18,11 +18,11 @@ function getMatches() {
     const httpTransport = require('https');
     const responseEncoding = 'utf8';
     const httpOptions = {
-        hostname: properties.get('bowled.hostname'),
-        port: properties.get('bowled.port'),
-        path: properties.get('bowled.matchesPath'),
+        hostname: process.env.APIURL,
+        port: process.env.APIPORT,
+        path: process.env.MATCHESURL,
         method: 'GET',
-        headers: {"X-Mashape-Key":properties.get('bowled.mashapeKey')}
+        headers: {"X-Mashape-Key": process.env.APIKEY}
     };
     httpOptions.headers['User-Agent'] = 'node ' + process.version;
 
