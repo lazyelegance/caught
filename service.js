@@ -52,10 +52,21 @@ function getMatches() {
 
 
 })((error, statusCode, headers, body) => {
-    console.log('ERROR:', error);
+  if (error == null) {
+    console.log("SUCCESS");
+    console.log('HEADERS:', headers);
+    // console.log('BODY:', JSON.parse(body));
+    var results = JSON.parse(body);
+    console.log(results.matchList.matches.length);
+    for (var i = 0; i < results.matchList.matches.length; i++) {
+      console.log(results.matchList.matches[i].id);
+      console.log(results.matchList.matches[i].homeTeam.name);
+    }
+  }
+    // console.log('ERROR:', error);
     console.log('STATUS:', statusCode);
-    console.log('HEADERS:', JSON.stringify(headers));
-    console.log('BODY:', body);
+    // console.log('HEADERS:', JSON.stringify(headers));
+    // console.log('BODY:', body);
 });
 }
 
