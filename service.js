@@ -1,6 +1,4 @@
 var http = require('http');
-var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('./keys.txt');
 const save = require('./save');
 
 

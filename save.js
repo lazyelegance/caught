@@ -1,6 +1,4 @@
 
-var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('./keys.txt');
 
 var admin = require("firebase-admin");
 admin.initializeApp({
