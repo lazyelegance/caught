@@ -1,15 +1,19 @@
 var http = require('http');
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('./keys.txt');
+const save = require('./save');
+
+
 
 function getMatches() {
   (function(callback) {
     'use strict';
 
-    console.log(properties.get('bowled.hostname'));
-    console.log(properties.get('bowled.port'));
-    console.log(properties.get('bowled.matchesPath'));
-    console.log(properties.get('bowled.mashapeKey'));
+    // TEST
+    // console.log(properties.get('bowled.hostname'));
+    // console.log(properties.get('bowled.port'));
+    // console.log(properties.get('bowled.matchesPath'));
+    // console.log(properties.get('bowled.mashapeKey'));
 
     const httpTransport = require('https');
     const responseEncoding = 'utf8';
@@ -52,10 +56,19 @@ function getMatches() {
 
 
 })((error, statusCode, headers, body) => {
-    console.log('ERROR:', error);
+  if (error == null) {
+    console.log("SUCCESS");
+    console.log('HEADERS:', headers);
+    // console.log('BODY:', JSON.parse(body));
+    var results = JSON.parse(body);
+    console.log(results.matchList.matches.length);
+    save.tester();
+    save.saveToFB(results.matchList.matches);
+  }
+    // console.log('ERROR:', error);
     console.log('STATUS:', statusCode);
-    console.log('HEADERS:', JSON.stringify(headers));
-    console.log('BODY:', body);
+    // console.log('HEADERS:', JSON.stringify(headers));
+    // console.log('BODY:', body);
 });
 }
 
