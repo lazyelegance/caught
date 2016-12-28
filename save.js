@@ -5,7 +5,13 @@ admin.initializeApp({
   credential: admin.credential.cert({
     projectId: process.env.FIR_PROJECT_ID,
     clientEmail: process.env.FIR_CLIENT_EMAIL,
-    privateKey: process.env.FIR_PRIVATE_KEY
+    privateKey: process.env.FIR_PRIVATE_KEY,
+    private_key_id: process.env.FIR_KEY_ID,
+    client_id: process.env.FIR_CLIENT_ID,
+    client_x509_cert_url: process.env.FIR_CERT_URL,
+    auth_provider_x509_cert_url: process.env.FIR_AUTH_CERT_URL
+
+
   }),
   databaseURL: process.env.FIREBASEDB
 });
