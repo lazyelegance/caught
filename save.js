@@ -2,10 +2,17 @@
 
 var admin = require("firebase-admin");
 admin.initializeApp({
-  credential: admin.credential.cert("./caught-1d629-firebase-adminsdk-rn0ek-c78a1b7d40.json"),
+  credential: admin.credential.cert({
+    projectId: process.env.FIR_PROJECT_ID,
+    clientEmail: process.env.FIR_CLIENT_EMAIL,
+    privateKey: process.env.FIR_PRIVATE_KEY
+  }),
   databaseURL: process.env.FIREBASEDB
 });
 
+admin.credential.cert({
+
+})
 
 var db = admin.database();
 var ref = db.ref("hello");
