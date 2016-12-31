@@ -23,7 +23,7 @@ var teamsRef = db.ref("teams");
 function saveToFB(results) {
 
   for (var i = 0; i < results.length; i++) {
-    // matchesRef.child(results[i].id).set(results[i]);
+    matchesRef.child(results[i].id).set(results[i]);
     var teamType = results[i].cmsMatchType;
     var homeTeamKey = results[i].homeTeam.name.toUpperCase();
     var awayTeamKey = results[i].awayTeam.name.toUpperCase();
