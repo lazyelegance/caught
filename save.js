@@ -22,38 +22,6 @@ var teamsRef = db.ref("teams");
 
 function saveToFB(results) {
 
-  db.ref("teams/BBL").once("value", function(snapshot) {
-// console.log(snapshot.val());
-snapshot.forEach(function(data) {
-  // console.log(data.val());
-  console.log("Team(name: \"" + data.key + "\", shortName: \"" + data.val().shortName + "\", logoString: \""  + data.val().logoUrl + "\", teamColor: \"" + data.val().teamColour + "\", isInternational: " + data.val().isInternational + ", isWomensTeam :" + data.val().isWomensTeam + "),");
-});
-});
-
-db.ref("teams/WBBL").once("value", function(snapshot) {
-// console.log(snapshot.val());
-snapshot.forEach(function(data) {
-// console.log(data.val());
-console.log("Team(name: \"" + data.key + "\", shortName: \"" + data.val().shortName + "\", logoString: \""  + data.val().logoUrl + "\", teamColor: \"" + data.val().teamColour + "\", isInternational: " + data.val().isInternational + ", isWomensTeam :" + data.val().isWomensTeam + "),");
-});
-});
-
-db.ref("teams/International").once("value", function(snapshot) {
-// console.log(snapshot.val());
-snapshot.forEach(function(data) {
-// console.log(data.val());
-console.log("Team(name: \"" + data.key + "\", shortName: \"" + data.val().shortName + "\", logoString: \""  + data.val().logoUrl + "\", teamColor: \"" + data.val().teamColour + "\", isInternational: " + data.val().isInternational + ", isWomensTeam :" + data.val().isWomensTeam + "),");
-});
-});
-
-db.ref("teams/International Women").once("value", function(snapshot) {
-// console.log(snapshot.val());
-snapshot.forEach(function(data) {
-// console.log(data.val());
-console.log("Team(name: \"" + data.key + "\", shortName: \"" + data.val().shortName + "\", logoString: \""  + data.val().logoUrl + "\", teamColor: \"" + data.val().teamColour + "\", isInternational: " + data.val().isInternational + ", isWomensTeam :" + data.val().isWomensTeam + "),");
-});
-});
-
   for (var i = 0; i < results.length; i++) {
     // matchesRef.child(results[i].id).set(results[i]);
     var teamType = results[i].cmsMatchType;
