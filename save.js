@@ -18,12 +18,63 @@ function tester() {
 }
 
 var matchesRef = db.ref("matches");
+var teamsRef = db.ref("teams");
 
 function saveToFB(results) {
+
   for (var i = 0; i < results.length; i++) {
-    matchesRef.child(results[i].id).set(results[i]);
+    // matchesRef.child(results[i].id).set(results[i]);
+    var teamType = results[i].cmsMatchType;
+    var homeTeamKey = results[i].homeTeam.name.toUpperCase();
+    var awayTeamKey = results[i].awayTeam.name.toUpperCase();
+
+    var isInternational = false;
+
+
+    if (results[i].cmsMatchType == 'One-Day International' || results[i].cmsMatchType == 'T20 International' || results[i].cmsMatchType == 'Test') {
+      isInternational = true;
+      if (results[i].isWomensMatch) {
+        teamType = "International Women";
+      } else {
+        teamType = "International";
+        homeTeamKey = results[i].homeTeam.name.split('Men')[0].trim().toUpperCase();
+        awayTeamKey = results[i].awayTeam.name.split('Men')[0].trim().toUpperCase();
+      }
+    } else if (results[i].cmsMatchType == 'WBBL') {
+      homeTeamKey = results[i].homeTeam.name.replace('WBBL', 'Women').toUpperCase();
+      awayTeamKey = results[i].awayTeam.name.replace('WBBL', 'Women').toUpperCase();
+    } else if (results[i].cmsMatchType == 'BBL') {
+      homeTeamKey = results[i].homeTeam.name.split('BBL')[0].trim().toUpperCase();
+      awayTeamKey = results[i].awayTeam.name.split('BBL')[0].trim().toUpperCase();
+    }
+
+    if (teamType != undefined) {
+      if (results[i].homeTeam.name != 'To Be Decided') {
+        teamsRef.child(teamType).child(homeTeamKey).set({
+          "id": results[i].homeTeam.id,
+          "name": homeTeamKey,
+          "shortName": results[i].homeTeam.shortName,
+          "logoUrl": results[i].homeTeam.logoUrl,
+          "teamColour": results[i].homeTeam.teamColour,
+          "isWomensTeam": results[i].isWomensMatch,
+          "isInternational": isInternational
+        });
+      }
+
+      if (results[i].awayTeam.name != 'To Be Decided') {
+        teamsRef.child(teamType).child(awayTeamKey).set({
+          "id": results[i].awayTeam.id,
+          "name": awayTeamKey,
+          "shortName": results[i].awayTeam.shortName,
+          "logoUrl": results[i].awayTeam.logoUrl,
+          "teamColour": results[i].awayTeam.teamColour,
+          "isWomensTeam": results[i].isWomensMatch,
+          "isInternational": isInternational
+        });
+      }
+    }
   }
 }
 
 exports.tester = tester;
-exports.saveToFB = saveToFB
+exports.saveToFB = saveToFB;

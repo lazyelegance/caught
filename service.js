@@ -55,13 +55,13 @@ function getMatches() {
 
 })((error, statusCode, headers, body) => {
   if (error == null) {
-    console.log("SUCCESS");
-    console.log('HEADERS:', headers);
+    // console.log("SUCCESS");
+    // console.log('HEADERS:', headers);
     // console.log('BODY:', JSON.parse(body));
-    var results = JSON.parse(body);
-    console.log(results.matchList.matches.length);
-    save.tester();
-    save.saveToFB(results.matchList.matches);
+    // var results = JSON.parse(body);
+    // console.log(results.matchList.matches.length);
+    // save.tester();
+    save.saveToFB(JSON.parse(body).matchList.matches);
   }
     // console.log('ERROR:', error);
     console.log('STATUS:', statusCode);
